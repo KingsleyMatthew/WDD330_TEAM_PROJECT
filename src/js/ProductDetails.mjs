@@ -38,7 +38,7 @@ export default class ProductDetails {
 
       <img
         class="divider"
-        src="${product.Images.PrimaryMedium}"
+        src="${product.Image}"
         alt="${product.Name}"
       >
 
