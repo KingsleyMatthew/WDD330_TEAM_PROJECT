@@ -1,7 +1,7 @@
-import { setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
-  
+
   constructor(productId, dataSource) {
     this.productId = productId;
     this.product = {};
@@ -19,11 +19,11 @@ export default class ProductDetails {
   }
 
   addProductToCart() {
-    let cart = JSON.parse(localStorage.getItem("so-cart")) || [];
+    const cartItems = getLocalStorage("so-cart") || [];
 
-    cart.push(this.product);
+    cartItems.push(this.product);
 
-    setLocalStorage("so-cart", cart);
+    setLocalStorage("so-cart", cartItems);
   }
 
   renderProductDetails() {
@@ -38,7 +38,7 @@ export default class ProductDetails {
 
       <img
         class="divider"
-        src="${product.Images.PrimaryMedium}"
+        src="${product.Image}"
         alt="${product.Name}"
       >
 
