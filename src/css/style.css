@@ -210,6 +210,7 @@ button {
 
 /* Styles for product lists */
 .product-card {
+  position: relative;
   flex: 1 1 45%;
   margin: 0.25em;
   padding: 0.5em;
@@ -231,6 +232,20 @@ button {
   font-size: 1em;
 }
 
+.discount-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: #d62828;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+}
+
 /* End product list card */
 
 .product-detail {
@@ -241,6 +256,36 @@ button {
 
 .product-detail img {
   width: 100%;
+}
+
+/* Category styles*/
+.categories {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--dark-grey);
+  flex: 1 1 150px;
+}
+
+.category img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.category h2 {
+  font-size: 1rem;
+  text-align: center;
 }
 
 /* Start cart list card styles */
