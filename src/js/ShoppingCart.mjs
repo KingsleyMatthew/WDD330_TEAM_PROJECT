@@ -19,5 +19,17 @@ export default class ShoppingCart {
             this.listElement,
             this.cart
         );
+
+        if (this.cart.length > 0) {
+            const cartFooter = document.querySelector(".cart-footer");
+            cartFooter.classList.remove("hide");
+
+            const total = this.cart.reduce(
+                (sum, item) => sum + item.FinalPrice,
+                0
+            );
+
+            cartFooter.querySelector(".cart-total").innerHTML = `Total: $${total.toFixed(2)}`;
+        }
     }
 }
