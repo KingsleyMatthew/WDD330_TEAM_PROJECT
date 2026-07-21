@@ -135,6 +135,11 @@ p {
 }
 
 /* utility classes */
+
+.hide {
+  display: none;
+}
+
 .highlight {
   color: var(--tertiary-color);
 }
