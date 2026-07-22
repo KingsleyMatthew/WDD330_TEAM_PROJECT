@@ -281,6 +281,43 @@ button {
   grid-column: 3;
 }
 
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: .75rem 0;
+}
+
+.quantity-controls button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: #2c6e49;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.quantity-controls button:hover {
+  background: #1f5136;
+}
+
+.quantity {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #2c6e49;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
