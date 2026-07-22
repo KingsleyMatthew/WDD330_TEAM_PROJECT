@@ -8,7 +8,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   constructor() {
   }
 
@@ -25,7 +25,7 @@ export default class ProductData {
   }
 
   async searchProducts(searchTerm) {
-    const products = await this.getData();
+    const products = await this.getData("tents");
 
     const term = searchTerm.toLowerCase();
 
