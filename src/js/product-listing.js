@@ -1,16 +1,24 @@
 import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, getParam } from "./utils.mjs";
 
-const dataSource = new ExternalServices("tents");
+loadHeaderFooter();
+
+const category = getParam("category");
+
+const title = document.querySelector(".product-list-title");
+
+if (title) {
+  title.textContent = `Top Products: ${category}`;
+}
+
+const dataSource = new ExternalServices();
 
 const listElement = document.querySelector(".product-list");
 
-const productList = new ProductList("tents", dataSource, listElement);
+const productList = new ProductList(category, dataSource, listElement);
 
 productList.init();
-
-loadHeaderFooter();
 
 const searchForm = document.querySelector(".search-form");
 
