@@ -42,7 +42,7 @@ function cartItemTemplate(item) {
     <p class="cart-card__color">${item.Colors?.[0]?.ColorName || "No Color"}</p>
 
     <div class="quantity-controls">
-      <button class="decrease">−</button>
+      <button class="decrease">-</button>
 
       <span class="quantity">${item.quantity}</span>
 
