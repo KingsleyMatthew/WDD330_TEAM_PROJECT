@@ -1,4 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
@@ -9,16 +10,20 @@ export default class CheckoutProcess {
         this.shipping = 0;
         this.tax = 0;
         this.orderTotal = 0;
+        this.externalServices = new ExternalServices();
     }
 
     init() {
         this.list = getLocalStorage(this.key) || [];
         this.calculateItemSubtotal();
+        this.calculateOrderTotal();
     }
 
     calculateItemSubtotal() {
         this.itemTotal = this.list.reduce(
-            (sum, item) => sum + item.FinalPrice,
+            (sum, item) => {
+                return sum + (item.FinalPrice * (item.quantity || 1));
+            }, 
             0
         );
 
@@ -27,6 +32,15 @@ export default class CheckoutProcess {
         );
 
         subtotal.innerText = `$${this.itemTotal.toFixed(2)}`;
+    }
+
+    packageItems(items) {
+        return items.map((item) => ({
+            id: item.Id,
+            name: item.Name,
+            price: item.FinalPrice,
+            quantity: item.quantity || 1
+        }));
     }
 
     calculateOrderTotal() {
@@ -55,5 +69,25 @@ export default class CheckoutProcess {
         tax.innerText = `$${this.tax.toFixed(2)}`;
         shipping.innerText = `$${this.shipping.toFixed(2)}`;
         orderTotal.innerText = `$${this.orderTotal.toFixed(2)}`;
+    }
+
+    async checkout(form) {
+        try {
+            const formData = new FormData(form);
+            const order = Object.fromEntries(formData);
+
+            order.orderDate = new Date().toISOString();
+            order.items = this.packageItems(this.list);
+            order.orderTotal = this.orderTotal.toFixed(2);
+            order.shipping = this.shipping;
+            order.tax = this.tax.toFixed(2);
+
+            console.log("Final Order:", order);
+
+            return await this.externalServices.checkout(order);
+        } catch (err) {
+            console.error("Checkout error:", err);
+            throw err;
+        }
     }
 }

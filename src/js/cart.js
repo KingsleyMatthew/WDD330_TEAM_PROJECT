@@ -1,4 +1,6 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
 
 let cartItems = getLocalStorage("so-cart") || [];
 
@@ -27,13 +29,21 @@ function renderCartContents() {
 
   attachEvents();
   updateTotal();
+
+  const cartFooter = document.querySelector(".cart-footer");
+
+  if (cartItems.length > 0) {
+    cartFooter.classList.remove("hide");
+  } else {
+    cartFooter.classList.add("hide");
+  }
 }
 
 function cartItemTemplate(item) {
   return `
 <li class="cart-card divider" data-id="${item.Id}">
   <a href="#" class="cart-card__image">
-    <img src="${item.Image}" alt="${item.Name}">
+    <img src="${item.Images?.PrimaryMedium || item.Image}" alt="${item.Name}">
   </a>
 
   <div class="cart-card__details">
