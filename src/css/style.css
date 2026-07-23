@@ -494,3 +494,32 @@ footer {
     margin: 0;
   }
 }
+
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: var(--dark-grey);
+  border: 1px solid var(--tertiary-color);
+  border-radius: 5px;
+}
+
+.alert p {
+  margin: 0;
+  padding: 0;
+}
+
+.alert-close {
+  margin: 0;
+  padding: 0.25rem 0.75rem;
+  background-color: transparent;
+  color: var(--dark-grey);
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
